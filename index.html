@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<head>
+    <title>青岛啤酒能量核，聚燃!</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- <meta id="jdouview" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/> -->
+    <meta name="format-detection"content="telephone=no">
+    <link rel="stylesheet" href="css/index.css?v=18">
+    </head>
+    <script>
+        // alert(window.screen.width);
+        if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+            var phoneScale = parseInt(window.screen.width)/640;
+            document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+            }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        }else{
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+            <script src="js/jquery.min.js"></script>
+            <script src="js/createjs.min.js"></script>
+            <!--动画效果-->
+            <script src="js/TweenMax.min.js"></script>
+            <script src="js/three.min.js"></script>
+            <!--重力感应-->
+            <script src="js/orienter.js"></script>
+            <!-- <script src="js/DeviceOrientationControls.js"></script> -->
+            <!-- 代码 -->
+            <script src="js/CSS3DRenderer.js"></script>
+    <body onload="preload()">
+        <div id="preload-bg">
+            <div id="pre1"></div>
+            <div id="pre2"></div>
+            <div id="pre3"></div>
+        </div>
+        <div class="box">
+            <!-- S-loading部分 -->
+			<section class="screen" id="loading">
+                <p class="text absolute" id="loading_text">0%</p>
+            </section>
+            <!-- E-loading部分 -->
+            <!-- S-首页 -->
+            <section class="screen" id="homePage">
+                <div class="logo"></div>
+                <div class="rule-btn"></div>
+                <div class="text-left"></div>
+                <div class="text-right"></div>
+                <div class="effect"></div>
+                <div class="enter-eff">
+                </div>
+                <div class="enter-btn"></div>
+                <div class="rule-pop">
+                    <div class="rule"></div>
+                </div>
+                <canvas id="s1_canvas" width="640" height="1040"></canvas>
+            </section>
+            <!-- E-首页 -->
+            <!-- E-倒计时 -->
+            <section class="screen" id="countBox">
+                <canvas id="s3_canvas" width="640" height="1040"></canvas>
+            </section>
+            <!-- S-倒计时 -->
+            <!-- S-全景 -->
+            <div id="CanvasBody" class="screen">
+                    <div class="energy">
+                        <div class="nlz"></div>
+                        <div class="pjp"></div>
+                    </div>
+                    <div class="tishi"></div>
+                    <div class="count-down">00:00</div>
+                    <div class="num">00</div>
+                    <div class="pjp-logo"></div>
+                    <!-- <canvas id="qj_canvas" width="640" height="1040"></canvas> -->
+                    <div class="res-pop">
+                        <div class="comp">
+                            <div class="comp-num"></div>
+                        </div>
+                    </div>
+                    <div class="wei-pop">
+                            <div class="wei"></div>
+                        </div>
+                    <div id="bg_section_0" class="bg_section bg_section_4 scale_test">
+                        <img class="bg" src="images/2.jpg" alt="">
+                        <div class="Lightning2"></div>
+                    </div>
+                    <div id="bg_section_1" class="bg_section bg_section_5 scale_test">
+                        <img class="bg" src="images/0.jpg" alt="">
+                        <!-- <div class="Fire"></div> -->
+                        <div class="Fire2"></div>
+                    </div>
+                    <div id="bg_section_2" class="bg_section bg_section_2 scale_test">
+                        <img class="bg" src="images/4.jpg" alt="">
+                        <div class="Fire6"></div>
+                        <!-- <div class="Throw_Blender"></div>
+                        <div class="Lightning3"></div> -->
+                    </div>
+                    <div id="bg_section_3" class="bg_section bg_section_3 scale_test">
+                        <img class="bg" src="images/5.jpg" alt="">
+                    </div>
+                    <div id="bg_section_4" class="bg_section bg_section_1 scale_test">
+                        <img class="bg" src="images/1.jpg" alt="">
+                        <!-- <div class="Fire_Blender"></div> -->
+                        <div class="Lightning1"></div>
+                        <div class="aircraft"></div>
+
+                    </div>
+                    <div id="bg_section_5" class="bg_section bg_section_0 scale_test">
+                        <img class="bg" src="images/3.jpg" alt="">
+                    </div>
+            </div>
+            <!-- E-全景 -->
+            <!-- S-领券 -->
+            <section class="screen" id="lihePage">
+                <div class="form-btn"></div>
+                <div class="share"></div>
+                <div class="share-pop">
+                </div>
+                <div class="form-pop">
+                        <form>
+                            <div class="close"></div>
+                            <input type="text" class="name" id="na" maxlength="100">
+                            <input type="number" class="phone" id="ph" maxlength="11">
+                            <textarea  class="address" id="add" maxlength="100"></textarea>
+                            <button type="button" id="submit"></button>
+                        </form>
+                    </div>
+            </section>
+            <section class="screen" id="liheTwoPage">
+                <div class="form-btn"></div>
+                <div class="share"></div>
+                <div class="share-pop">
+                </div>
+                <div class="form-pop">
+                        <form>
+                            <div class="close"></div>
+                            <div class="close wanc"></div>
+                            <input type="text" class="name" readonly maxlength="100">
+                            <input type="number" class="phone" readonly maxlength="11">
+                            <textarea  class="address" readonly maxlength="100"></textarea>
+                        </form>
+                    </div>
+            </section>
+            <section class="screen" id="endPage">
+                <div class="film endtext"></div>
+                <div class="films stext"></div>
+                <div class="form-btn"></div>
+                <div class="form-pop">
+                    <div class="ma">
+                        <div class="close"></div>
+                        <div class="close wanc"></div>
+                        <p>121345E</p>
+                    </div>
+                </div>
+                <div class="share"></div>
+                <div class="share-pop">
+                </div>
+            </section>
+            <section class="screen" id="fPage">
+                <a class="tz" href="http://coupon.m.jd.com/coupons/show.action?key=8ca166b5b8264f078cfdfe528f20f4ee&roleId=10843064&to=tsingtao.jd.com"></a>
+                <div class="five endtext"></div>
+                <div class="stext"></div>
+                <div class="share"></div>
+                <div class="share-pop">
+                </div>
+            </section>
+            <section class="screen" id="tPage">
+                <a class="tz" href="http://coupon.m.jd.com/coupons/show.action?key=3fbfcc8f1d6c478681dfb66b33b9c6c5&roleId=10843003&to=tsingtao.jd.com"></a>
+                <div class="ten endtext"></div>
+                <div class="stext"></div>
+                <div class="share"></div>
+                <div class="share-pop">
+                </div>
+            </section>
+            <!-- E-领券 -->
+            
+        </div>
+    </body>
+    <script src="js/init.js"></script>
+    <script src="js/index.js?v=22"></script>
+</html> 
